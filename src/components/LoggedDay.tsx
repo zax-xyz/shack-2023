@@ -33,8 +33,8 @@ const LoggedDay: React.FC<LoggedDayProps> = ({ datePicked, dateInfo }) => {
           query: { datePicked: datePicked.toString() },
         }}
       >
-        <button tw="rounded px-3 py-1.5 transition bg-white border border-violet-300 text-gray-900 hover:bg-violet-50">
-          Edit
+        <button tw="mr-6 rounded px-3 py-1.5 transition bg-white border border-violet-300 text-gray-900 hover:bg-violet-50">
+          <p className="text-indigo-600">Edit</p>
         </button>
       </Link>
 
