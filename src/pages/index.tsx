@@ -1,17 +1,9 @@
 import Head from "next/head";
-import { api } from "~/utils/api";
 import GoogleLogo from "~/assets/g-logo.png";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-// [{date:  [
-//            { activity: "scrolling through tiktok", mood: 2, message: "i am kenough" },
-//            { activity: "seeing friends", mood: 2, message: "i am kenough"},
-//          ]
-// }]
-
 export default function Home() {
-  const hello = api.example.hello.useQuery({ text: "from tRPC" });
   const router = useRouter();
 
   return (
