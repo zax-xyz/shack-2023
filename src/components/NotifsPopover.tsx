@@ -15,15 +15,20 @@ const NotifsPopover = () => {
     <div>
       <Popover>
         <PopoverTrigger>
-          <BellIcon className="h-6 w-6" />
+          <BellIcon className="relative h-6 w-6" />
         </PopoverTrigger>
-        <PopoverContent bg="white" color="black">
+        <PopoverContent
+          bg="white"
+          color="black"
+          position="sticky"
+          className="right-0 mx-auto max-w-xl rounded-md bg-white shadow"
+        >
           <PopoverArrow />
-          <div className="flex justify-end">
+          <div className="flex justify-between p-3">
+            <PopoverHeader fontWeight="bold">Notifications</PopoverHeader>
             <PopoverCloseButton />
           </div>
-          <PopoverHeader fontWeight="bold">Notifications</PopoverHeader>
-          <PopoverBody>
+          <PopoverBody className="p-4">
             <li>Log your day!</li>
             <li>Your energy is low</li>
           </PopoverBody>
