@@ -6,7 +6,7 @@ type Props = ComponentProps<"div"> & {
 };
 
 const Card = ({ header, children, bodyProps, ...props }: Props) => (
-  <div tw="bg-white rounded-md shadow" {...props}>
+  <div tw="bg-white rounded-md shadow max-w-xl" {...props}>
     {header !== undefined && (
       <div tw="bg-violet-100 py-2 px-3">
         <h2 tw="font-semibold">{header}</h2>
