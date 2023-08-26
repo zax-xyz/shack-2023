@@ -1,5 +1,5 @@
 import { Datepicker } from "@aliakbarazizi/headless-datepicker";
-import { type ComponentProps } from "react";
+import { useState, type ComponentProps } from "react";
 import tw, { styled } from "twin.macro";
 import dayjs from "dayjs";
 
@@ -36,11 +36,16 @@ const DatepickerItem = styled(Datepicker.Item, {
   ],
 });
 
-const WeekdayPicker = (props: ComponentProps<typeof Datepicker>) => {
+interface WeekdayPickerProps {
+  datePicked: any;
+  setDatePicked: (date: any) => void;
+}
+
+const WeekdayPicker: React.FC<WeekdayPickerProps> = ({ datePicked, setDatePicked }) => {
   const today = dayjs();
 
   return (
-    <Datepicker {...props}>
+    <Datepicker onChange={setDatePicked} value={datePicked}>
       <Datepicker.Picker
         defaultType="day"
         tw="p-4 max-w-xl mx-auto bg-white rounded-md shadow"

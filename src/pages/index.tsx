@@ -1,6 +1,12 @@
 import Head from "next/head";
 import Link from "next/link";
 import { api } from "~/utils/api";
+import { atom } from 'jotai';
+
+/**
+ * [{ date: [{task: a, mood: 1}, {task:b, mood:2}] }]
+ */
+export const datesInfoAtom = atom(['a']);
 
 export default function Home() {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
