@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useAtom } from "jotai";
 import { datesInfoAtom } from ".";
@@ -12,11 +12,9 @@ const moodForm = () => {
   ];
 
   const [datesInfo, setDatesInfo] = useAtom(datesInfoAtom);
-  const searchParams = useSearchParams();
-  const date = searchParams.get("datePicked");
-
   const [selectedMood, setSelectedMood] = useState(undefined);
   const [message, setMessage] = useState("");
+  const dateQuery = searchParams.get('datePicked');
 
   const [activityAndMood, setActivityAndMood] = useState([]);
   //   Example of activityAndMood
