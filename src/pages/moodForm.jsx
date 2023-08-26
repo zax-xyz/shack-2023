@@ -11,7 +11,9 @@ const moodForm = () => {
     "seeing friends",
   ];
 
+  const searchParams = useSearchParams();
   const [datesInfo, setDatesInfo] = useAtom(datesInfoAtom);
+
   const [selectedMood, setSelectedMood] = useState(undefined);
   const [message, setMessage] = useState("");
   const dateQuery = searchParams.get('datePicked');
