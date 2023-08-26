@@ -1,6 +1,9 @@
 import Link from "next/link";
 
-const LoggedDay = () => {
+interface LoggedDayProps {
+  datePicked: Date
+}
+const LoggedDay: React.FC<LoggedDayProps> = ({ datePicked }) => {
   return (
     <div className="flex flex-col">
       <div className="self-center my-8 font-bold text-3xl text-center">
@@ -13,7 +16,7 @@ const LoggedDay = () => {
         </div>
       </div>
 
-      <Link className="self-center m-4" href="/moodForm">
+      <Link className="self-center m-4" href={`/moodForm?datePicked=${datePicked}`}>
         <button className="w-25 bg-transparent py-2 px-4 border rounded">
           Edit
         </button>

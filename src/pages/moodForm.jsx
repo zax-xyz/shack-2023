@@ -1,5 +1,8 @@
 import React from "react";
 import { useState } from "react";
+import { useAtom } from "jotai";
+import { datesInfoAtom } from ".";
+import { useSearchParams } from 'next/navigation';
 
 const moodForm = () => {
   const mockActivities = [
@@ -9,6 +12,10 @@ const moodForm = () => {
   ];
 
   const [selectedMood, setSelectedMood] = useState(undefined);
+  const [datesInfo, setDatesInfo] = useAtom(datesInfoAtom);
+  const searchParams = useSearchParams();
+  const date = searchParams.get('datePicked');
+  console.log(date)
 
   const [activityAndMood, setActivityAndMood] = useState([]);
   //   Example of activityAndMood

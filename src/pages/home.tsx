@@ -57,7 +57,7 @@ export default function Home() {
         <WeekdayPicker datePicked={datePicked} setDatePicked={setDatePicked}/>
       </div>
 
-      {dateInfo ? <LoggedDay /> : <UnloggedDay />}
+      {dateInfo ? <LoggedDay datePicked={datePicked}/> : <UnloggedDay datePicked={datePicked}/>}
   
     </div>
   );
