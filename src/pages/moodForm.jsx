@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useAtom } from "jotai";
 import { datesInfoAtom } from ".";
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams } from "next/navigation";
 
 const moodForm = () => {
   const mockActivities = [
@@ -11,23 +11,23 @@ const moodForm = () => {
     "seeing friends",
   ];
 
-  const [selectedMood, setSelectedMood] = useState(undefined);
   const [datesInfo, setDatesInfo] = useAtom(datesInfoAtom);
   const searchParams = useSearchParams();
-  const date = searchParams.get('datePicked');
+  const date = searchParams.get("datePicked");
+
+  const [selectedMood, setSelectedMood] = useState(undefined);
+  const [message, setMessage] = useState("");
 
   const [activityAndMood, setActivityAndMood] = useState([]);
   //   Example of activityAndMood
   //   User selects "very happy" as mood and then ticks the following 2 tasks:
   //   [
-  //     { activity: "scrolling through tiktok", mood: 2 },
-  //     { activity: "seeing friends", mood: 2 },
+  //     { activity: "scrolling through tiktok", mood: 2, message: "i am kenough" },
+  //     { activity: "seeing friends", mood: 2, message: "i am kenough"},
   //   ];
 
   const onMoodFaceClick = (mood) => {
     setSelectedMood(mood.target.id);
-
-    console.log(selectedMood);
   };
 
   const handleSelectedActivity = (e) => {
@@ -46,18 +46,32 @@ const moodForm = () => {
       });
       setActivityAndMood(newActivityAndMoodObj);
     }
+  };
+
+  const handleMessage = (e) => {
+    setMessage(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    // Add message to all activityAndMood objects
+    activityAndMood.forEach((obj) => {
+      obj["message"] = message;
+    });
+
+    setActivityAndMood(activityAndMood);
+
     console.log(activityAndMood);
   };
 
   return (
     <div className="p-10">
       <div id="mood">
-        <div>How was your day?</div>
+        <div className="font-bold">How was your day?</div>
         <div id="faces" className="flex justify-between">
           <button
             id="-2"
             onClick={onMoodFaceClick}
-            className={`rounded-sm bg-white p-1 outline ${
+            className={`rounded-sm p-1 outline ${
               selectedMood == -2 ? "bg-purple-300" : ""
             }`}
           >
@@ -66,7 +80,7 @@ const moodForm = () => {
           <button
             id="-1"
             onClick={onMoodFaceClick}
-            className={`rounded-sm bg-white p-1 outline ${
+            className={`rounded-sm p-1 outline ${
               selectedMood == -1 ? "bg-purple-300" : ""
             }`}
           >
@@ -75,7 +89,7 @@ const moodForm = () => {
           <button
             id="0"
             onClick={onMoodFaceClick}
-            className={`rounded-sm bg-white p-1 outline ${
+            className={`rounded-sm p-1 outline ${
               selectedMood == 0 ? "bg-purple-300" : ""
             }`}
           >
@@ -84,7 +98,7 @@ const moodForm = () => {
           <button
             id="1"
             onClick={onMoodFaceClick}
-            className={`rounded-sm bg-white p-1 outline ${
+            className={`rounded-sm p-1 outline ${
               selectedMood == 1 ? "bg-purple-300" : ""
             }`}
           >
@@ -94,7 +108,7 @@ const moodForm = () => {
           <button
             id="2"
             onClick={onMoodFaceClick}
-            className={`rounded-sm bg-white p-1 outline ${
+            className={`rounded-sm p-1 outline ${
               selectedMood == 2 ? "bg-purple-300" : ""
             }`}
           >
@@ -117,12 +131,19 @@ const moodForm = () => {
       </div>
       <br></br>
       <div id="affirmations">
-        <div>What's your mantra/word of affirmation for tomorrow?</div>
-        <input id="affirmation" type="text"></input>
+        <div className="font-bold">
+          What's a message you want to leave for yourself in 24 hours?
+        </div>
+        <input id="affirmation" type="text" onChange={handleMessage}></input>
         <br></br>
-        <div id="affirmation-buttons" className="py-4">
+        <div
+          id="affirmation-buttons"
+          className="flex justify-center space-x-8 py-8"
+        >
           <button className="rounded-sm p-2 outline">Finish Later</button>
-          <button className="rounded-sm p-2 outline">Submit</button>
+          <button className="rounded-sm p-2 outline" onClick={handleSubmit}>
+            Submit
+          </button>
         </div>
       </div>
     </div>
