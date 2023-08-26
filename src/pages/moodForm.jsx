@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useAtom } from "jotai";
-import datesInfoAtom from '~/atoms/datesInfoAtom'
+import datesInfoAtom from "~/atoms/datesInfoAtom";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -17,7 +17,7 @@ const moodForm = () => {
 
   const [selectedMood, setSelectedMood] = useState(undefined);
   const [message, setMessage] = useState("");
-  
+
   const router = useRouter();
 
   const [activityAndMood, setActivityAndMood] = useState([]);
@@ -31,14 +31,13 @@ const moodForm = () => {
     if (!dateInfo) return;
     setSelectedMood(dateInfo[0].mood);
     setMessage(dateInfo[0].message);
-    setActivityAndMood(dateInfo)
-  }, [dateInfo])
+    setActivityAndMood(dateInfo);
+  }, [dateInfo]);
 
   useEffect(() => {
     const { datePicked } = router.query;
     initDateInfo(new Date(datePicked));
-  }, [])
-
+  }, []);
 
   const initDateInfo = (datePicked) => {
     for (const dateInfo of datesInfo) {
@@ -49,15 +48,16 @@ const moodForm = () => {
       }
     }
     setDateInfo(null);
-  }
+  };
 
   // If given date is equal to 'datePicked'
   const isEqualDate = (d1, datePicked) => {
-   return d1.getDate() === datePicked.getDate() &&
-          d1.getMonth() === datePicked.getMonth() &&
-          d1.getFullYear() === datePicked.getFullYear();
-  }
-
+    return (
+      d1.getDate() === datePicked.getDate() &&
+      d1.getMonth() === datePicked.getMonth() &&
+      d1.getFullYear() === datePicked.getFullYear()
+    );
+  };
 
   const onMoodFaceClick = (mood) => {
     setSelectedMood(mood.target.id);
@@ -95,8 +95,8 @@ const moodForm = () => {
   };
 
   const handleCheckedbox = (act) => {
-    return activityAndMood.map(elem => elem.activity).includes(act);
-  }
+    return activityAndMood.map((elem) => elem.activity).includes(act);
+  };
 
   return (
     <div className="p-10">
@@ -170,7 +170,12 @@ const moodForm = () => {
         <div className="font-bold">
           What's a message you want to leave for yourself in 24 hours?
         </div>
-        <input value={message} id="affirmation" type="text" onChange={handleMessage}></input>
+        <input
+          value={message}
+          id="affirmation"
+          type="text"
+          onChange={handleMessage}
+        ></input>
         <br></br>
         <div
           id="affirmation-buttons"
@@ -180,9 +185,13 @@ const moodForm = () => {
             Go Back
           </Link>
 
-          <button className="rounded-sm p-2 outline" onClick={handleSubmit}>
+          <Link
+            href="/home"
+            className="rounded-sm p-2 outline"
+            onClick={handleSubmit}
+          >
             Submit
-          </button>
+          </Link>
         </div>
       </div>
     </div>
