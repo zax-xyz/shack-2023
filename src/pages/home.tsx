@@ -11,26 +11,28 @@ export default function Home() {
 
   const [datePicked, setDatePicked] = useState<Date>(new Date());
   const [datesInfo, setDatesInfo] = useAtom(datesInfoAtom);
+  const [dateInfo, setDateInfo] = useState(null);
 
   const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
   ];
 
   useEffect(() => {
-    const dateInfo = getDateInfo();
-    console.log(dateInfo)
+    initDateInfo();
   }, [datePicked])
 
   // Finds date inside datesInfo and returns it's corresponding array of information
-  const getDateInfo = () => {
+  const initDateInfo = () => {
     for (const dateInfo of datesInfo) {
       const d1 = new Date(Object.keys(dateInfo)[0]!);
       if (isEqualDate(d1)) {
-        return Object.values(dateInfo)[0]
+        setDateInfo(Object.values(dateInfo)[0]);
+        return;
       }
     }
-    return null;
+    setDateInfo(null);
   }
+
   // If given date is equal to 'datePicked'
   const isEqualDate = (d1: Date) => {
    return d1.getDate() === datePicked.getDate() &&
@@ -65,7 +67,7 @@ export default function Home() {
 
       <Link className="self-center m-4" href="/moodForm">
         <button className="w-25 bg-transparent py-2 px-4 border rounded">
-          LOG TODAY
+          {dateInfo ? <p>Edit</p> : <p>Log Today</p>}
         </button>
       </Link>
 
