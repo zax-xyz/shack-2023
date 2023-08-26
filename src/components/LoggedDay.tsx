@@ -7,7 +7,7 @@ interface LoggedDayProps {
 
 const LoggedDay: React.FC<LoggedDayProps> = ({ datePicked, dateInfo}) => {
   // const moods = [😭, 🙁, 😐, 🙂, 😁]
-  console.log('DATEINFO', dateInfo[0].mood + 2)
+
   const moods = ['\u{1F62D}', '\u{1F615}', '\u{1F610}', '\u{1F642}', '\u{1F601}']
   return (
     <div className="flex flex-col">
