@@ -20,7 +20,10 @@ const LoggedDay: React.FC<LoggedDayProps> = ({ datePicked, dateInfo}) => {
         </div>
       </div>
 
-      <Link className="self-center m-4" href={`/moodForm?datePicked=${datePicked}`}>
+      <Link className="self-center m-4" href={{
+        pathname: '/moodForm',
+        query: { datePicked: datePicked.toString()}
+      }}>
         <button className="w-25 bg-transparent py-2 px-4 border rounded">
           Edit
         </button>
