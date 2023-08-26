@@ -10,7 +10,7 @@ const UnloggedDay: React.FC<UnloggedDayProps> = ({ datePicked }) => {
 
   return (
     <div className="flex flex-col">
-      <div className="self-center mt-8 mb-3 text-3xl text-center text-indigo-500 mx-8">
+      <div className="self-center mt-8 mb-3 text-2xl text-center text-indigo-500 mx-10">
         You haven't logged for today :(
       </div>
 
