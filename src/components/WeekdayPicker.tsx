@@ -9,6 +9,7 @@ const DatepickerItem = styled(Datepicker.Item, {
     flex items-center justify-center
     text-sm leading-none font-medium
     rounded-full select-none transition
+    outline-none focus:(ring ring-purple-400)
   `,
 
   variants: {
@@ -20,10 +21,10 @@ const DatepickerItem = styled(Datepicker.Item, {
       true: tw`text-gray-500`,
     },
     isSelected: {
-      true: tw`bg-gray-600 text-gray-200`,
+      true: tw`bg-purple-600 text-white hocus:bg-purple-800`,
     },
     isToday: {
-      true: tw`border border-gray-500`,
+      true: tw`border border-purple-600`,
     },
   },
 
@@ -46,7 +47,7 @@ const WeekdayPicker = (props: ComponentProps<typeof Datepicker>) => {
         tw="p-4 max-w-xl mx-auto bg-white rounded-md shadow"
         alwaysOpen
       >
-        <Datepicker.Items tw="grid w-full auto-rows-max gap-4 overflow-y-auto scroll-smooth grid-cols-7 justify-items-center">
+        <Datepicker.Items tw="grid w-full auto-rows-max gap-4 grid-cols-7 justify-items-center">
           {({ items }) =>
             items
               .filter(
