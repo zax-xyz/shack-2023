@@ -1,6 +1,5 @@
 import { useAtom } from "jotai";
 import datePickedAtom from "~/atoms/datePickedAtom";
-import dayjs from "dayjs";
 import logo from "~/assets/logo.png";
 import Link from "next/link";
 import { CalendarDaysIcon, HomeIcon } from "@heroicons/react/24/solid";
@@ -8,15 +7,13 @@ import { UserIcon } from "@heroicons/react/24/solid";
 import NotifsPopover from "./NotifsPopover";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import {
   Popover,
   PopoverTrigger,
   PopoverContent,
-  PopoverHeader,
   PopoverBody,
   PopoverArrow,
-  PopoverCloseButton,
   useDisclosure,
 } from "@chakra-ui/react";
 
@@ -34,8 +31,7 @@ const Navbar = () => {
           </div>
         </Link>
         <div className="flex items-center gap-4">
-          <p>{dayjs(datePicked).format("MMMM")}</p>
-          <NotifsPopover />
+        <NotifsPopover />
         
 
 
