@@ -12,6 +12,7 @@
   "dependencies": {
     "@aliakbarazizi/headless-datepicker": "^1.1.5",
     "@headlessui/react": "^1.7.17",
+    "@chakra-ui/react": "^2.8.0",
     "@heroicons/react": "^2.0.18",
     "@prisma/client": "^5.1.1",
     "@stitches/react": "^1.2.8",
