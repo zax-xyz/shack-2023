@@ -64,7 +64,7 @@ const Day = () => {
   return (
     <>
       <div className="px-3">
-        <h1 tw="text-3xl my-2 text-indigo-500">Monthly View</h1>
+        <h1 tw="text-3xl mt-5 text-indigo-500">Monthly View</h1>
         <p>Chosen date: {date ? formatDate(date) : "No date chosen"}</p>
       </div>
 
