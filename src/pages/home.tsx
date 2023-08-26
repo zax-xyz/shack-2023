@@ -85,7 +85,7 @@ export default function Home() {
       {dateInfo ? (
         <LoggedDay datePicked={datePicked} dateInfo={dateInfo} />
       ) : (
-        <UnloggedDay datePicked={datePicked} />
+        <UnloggedDay datePicked={datePicked}/>
       )}
     </div>
   );
