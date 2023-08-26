@@ -8,6 +8,8 @@ export default {
       fontFamily: {
         sans: ["Nunito", ...defaultTheme.fontFamily.sans],
       },
+      minWidth: defaultTheme.width,
+      maxWidth: defaultTheme.width,
     },
   },
   plugins: [require("@tailwindcss/forms")],
