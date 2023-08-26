@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useAtom } from "jotai";
-import { datesInfoAtom } from ".";
 import { useSearchParams } from "next/navigation";
+import datesInfoAtom from '~/atoms/datesInfoAtom'
 import Link from "next/link";
 
 const moodForm = () => {

@@ -30,7 +30,7 @@ const Item = styled(Datepicker.Item, {
   variants: {
     isHeader: {
       true: tw`cursor-default font-semibold`,
-      false: tw`hover:bg-gray-700`,
+      false: tw`hover:bg-violet-200`,
     },
     disabled: {
       true: tw`text-gray-500`,
@@ -47,12 +47,6 @@ const Item = styled(Datepicker.Item, {
   },
 
   compoundVariants: [
-    {
-      isHeader: false,
-      disabled: false,
-      isColored: false,
-      css: tw`hover:text-white`,
-    },
     {
       isColored: false,
       isSelected: true,
