@@ -36,7 +36,7 @@ const Item = styled(Datepicker.Item, {
       true: tw`text-gray-500`,
     },
     isSelected: {
-      true: tw`bg-purple-600 text-white hocus:bg-purple-800`,
+      true: tw`(bg-purple-600 text-white hocus:bg-purple-800)!`,
     },
     isToday: {
       true: tw`border border-purple-600`,
