@@ -1,5 +1,6 @@
 import Head from "next/head";
 import GoogleLogo from "~/assets/g-logo.png";
+import logo from "~/assets/logo.png";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
@@ -17,11 +18,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main tw="min-h-screen flex flex-col items-center justify-center gap-4">
-        <img
-          className="h-36"
-          src="https://static.thenounproject.com/png/335121-200.png"
-          alt="Home"
-        />
+        <Image className="h-36 w-36" src={logo} alt="Thrive" />
         <h1 tw="text-4xl">Welcome to Thrive</h1>
         <p>The app that makes room for your drive</p>
         <button
