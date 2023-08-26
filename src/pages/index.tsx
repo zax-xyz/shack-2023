@@ -3,10 +3,24 @@ import Link from "next/link";
 import { api } from "~/utils/api";
 import { atom } from 'jotai';
 
-/**
- * [{ date: [{task: a, mood: 1}, {task:b, mood:2}] }]
- */
-export const datesInfoAtom = atom(['a']);
+// [{date: [
+//           { task: "scrolling through tiktok", mood: 2 },
+//           { task: "seeing friends", mood: 2 },
+//          ]
+//   },
+// ]
+
+export const datesInfoAtom = atom( 
+  [{'Tue Aug 22 2023 21:01:00 GMT+1000 (Australian Eastern Standard Time)': [
+    { task: "scrolling through tiktok", mood: 2 },
+    { task: "seeing friends", mood: 2 },
+    ]},
+    {'Wed Aug 23 2023 21:01:00 GMT+1000 (Australian Eastern Standard Time)': [
+      { task: "scrolling through tiktok", mood: 2 },
+      { task: "seeing friends", mood: 2 },
+      ]}
+  ]
+  );
 
 export default function Home() {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });

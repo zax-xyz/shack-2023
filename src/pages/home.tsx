@@ -17,8 +17,26 @@ export default function Home() {
   ];
 
   useEffect(() => {
-    datesInfo
-  }, [])
+    const dateInfo = getDateInfo();
+    console.log(dateInfo)
+  }, [datePicked])
+
+  // Finds date inside datesInfo and returns it's corresponding array of information
+  const getDateInfo = () => {
+    for (const dateInfo of datesInfo) {
+      const d1 = new Date(Object.keys(dateInfo)[0]!);
+      if (isEqualDate(d1)) {
+        return Object.values(dateInfo)[0]
+      }
+    }
+    return null;
+  }
+  // If given date is equal to 'datePicked'
+  const isEqualDate = (d1: Date) => {
+   return d1.getDate() === datePicked.getDate() &&
+          d1.getMonth() === datePicked.getMonth() &&
+          d1.getFullYear() === datePicked.getFullYear();
+  }
 
   return (
     <div className="flex flex-col ">
