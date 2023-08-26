@@ -17,24 +17,23 @@ const LoggedDay: React.FC<LoggedDayProps> = ({ datePicked, dateInfo }) => {
   ];
   return (
     <div className="flex flex-col">
-      <div className="my-8 self-center text-center text-3xl font-bold">
+      <div className="self-center mt-4">Words of Affirmation:</div>
+      <div className="mb-8 self-center text-center text-4xl font-bold text-indigo-500">
         "{dateInfo[0].message}"
       </div>
-      <div className="flex justify-center">
-        <div className="flex h-32 w-40 flex-col items-center justify-center rounded-xl bg-gray-200 p-5">
-          <div>Mood</div>
-          <div className="text-2xl">{moods[Number(dateInfo[0].mood) + 2]}</div>
-        </div>
+      <div className="flex self-center flex-col justify-center items-center w-44 h-44 bg-gradient-to-r from-indigo-400/80 to-purple-400/80 rounded-full">
+        <div className="text-white font-bold mb-3">Today's Mood:</div>
+        <div className="text-6xl">{moods[Number(dateInfo[0].mood) + 2]}</div>
       </div>
 
       <Link
-        className="m-4 self-center"
+        className="m-4 self-end"
         href={{
           pathname: "/moodForm",
           query: { datePicked: datePicked.toString() },
         }}
       >
-        <button className="w-25 rounded border bg-transparent px-4 py-2">
+        <button tw="rounded px-3 py-1.5 transition bg-white border border-violet-300 text-gray-900 hover:bg-violet-50">
           Edit
         </button>
       </Link>
