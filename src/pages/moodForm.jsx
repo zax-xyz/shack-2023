@@ -34,18 +34,16 @@ const moodForm = () => {
   }, [])
   
   useEffect(() => {
-    console.log('date', dateInfo)
     if (!dateInfo) return;
     setSelectedMood(dateInfo[0].mood);
     setMessage(dateInfo[0].message);
     setActivityAndMood(dateInfo);
   }, [dateInfo])
 
-  const initDateInfo = (dateQuery) => {
+  const initDateInfo = (datePicked) => {
     for (const dateInfo of datesInfo) {
       const d1 = new Date(Object.keys(dateInfo)[0]);
-      if (isEqualDate(d1, dateQuery)) {
-        console.log('hi')
+      if (isEqualDate(d1, datePicked)) {
         setDateInfo(Object.values(dateInfo)[0]);
         return;
       }
@@ -54,10 +52,11 @@ const moodForm = () => {
   }
 
   // If given date is equal to 'datePicked'
-  const isEqualDate = (d1, dateQuery) => {
-   return d1.getDate() === dateQuery.getDate() &&
-          d1.getMonth() === dateQuery.getMonth() &&
-          d1.getFullYear() === dateQuery.getFullYear();
+  const isEqualDate = (d1, datePicked) => {
+    const d2 = new Date(datePicked)
+   return d1.getDate() === d2.getDate() &&
+          d1.getMonth() === d2.getMonth() &&
+          d1.getFullYear() === d2.getFullYear();
   }
 
 
@@ -85,7 +84,6 @@ const moodForm = () => {
   };
 
   useEffect(() => {
-    console.log('updated', activityAndMood)
   }, [activityAndMood])
 
   const handleMessage = (e) => {
@@ -102,15 +100,33 @@ const moodForm = () => {
     activityAndMood.forEach((obj) => {
       obj["mood"] = selectedMood;
     });
-    console.log('SUBMIT:', activityAndMood)
     // setActivityAndMood(activityAndMood);
     updateDatesInfo();
   };
 
   const updateDatesInfo = () => {
     const { datePicked } = router.query;
-    console.log('date picked', datePicked);
-    console.log('submission', activityAndMood)
+    const i = findIndexDatesInfo(datePicked);
+
+    const copy = [...datesInfo]
+    if (i === -1) {
+      // Add new entry to datesInfo
+      copy.push({ [datePicked]: activityAndMood });
+    } else {
+      copy[i] = { [datePicked]: activityAndMood }; 
+    }
+    setDatesInfo(copy);
+  }
+
+  const findIndexDatesInfo = (date) => {
+    for (const i in datesInfo) {
+      const dateInfo = datesInfo[i]
+      const d1 = new Date(Object.keys(dateInfo)[0]);
+      if (isEqualDate(d1, date)) {
+        return i;
+      }
+    }
+    return -1;
   }
 
   const handleCheckedbox = (act) => {

@@ -17,6 +17,11 @@ export default function Home() {
   const [dateInfo, setDateInfo] = useState(null);
 
   useEffect(() => {
+    console.log('datePicked', datePicked)
+    console.log('datesInfo', datesInfo)
+  }, [])
+
+  useEffect(() => {
     initDateInfo();
   }, [datePicked])
 
