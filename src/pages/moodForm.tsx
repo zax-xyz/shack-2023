@@ -153,7 +153,7 @@ const MoodForm = () => {
       </div>
 
       <div className="mb-8">
-        <h1 className="text-indigo-500 text-2xl mb-1">How was your day?</h1>
+        <h1 className="text-indigo-500 text-2xl mb-2">How was your day?</h1>
         <div id="faces" className="flex">
           {moods.map((mood, i) => (
             <MoodButton
