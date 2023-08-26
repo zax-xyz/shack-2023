@@ -68,6 +68,7 @@ const Calendar = ({ view, levels, ...props }: Props) => {
                 disabled={item.disabled}
                 isSelected={item.isSelected}
                 isToday={item.isToday}
+                isColored={levels && item.value.toString() in levels}
                 css={getLevelColor(item.value, levels) ?? undefined}
               >
                 {item.isHeader ? item.text.substring(0, 2) : item.text}

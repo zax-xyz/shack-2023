@@ -23,7 +23,7 @@ const Item = styled(Datepicker.Item, {
     h-8 w-8 py-1.5
     flex items-center justify-center
     text-sm leading-none font-medium
-    rounded-full select-none transition
+    border-2 border-transparent rounded-full select-none transition
     outline-none focus:(ring ring-purple-400)
   `,
 
@@ -36,10 +36,13 @@ const Item = styled(Datepicker.Item, {
       true: tw`text-gray-500`,
     },
     isSelected: {
-      true: tw`(bg-purple-600 text-white hocus:bg-purple-800)!`,
+      true: {},
+    },
+    isColored: {
+      true: {},
     },
     isToday: {
-      true: tw`border border-purple-600`,
+      true: tw`border border-purple-400`,
     },
   },
 
@@ -48,6 +51,16 @@ const Item = styled(Datepicker.Item, {
       isHeader: false,
       disabled: false,
       css: tw`hover:text-white`,
+    },
+    {
+      isColored: false,
+      isSelected: true,
+      css: tw`bg-purple-600 text-white hocus:bg-purple-800`,
+    },
+    {
+      isColored: true,
+      isSelected: true,
+      css: tw`border-purple-600 text-purple-800!`,
     },
   ],
 });
