@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { api } from "~/utils/api";
@@ -8,6 +7,9 @@ import UnloggedDay from "~/components/UnloggedDay";
 import Calendar from "~/components/Calendar";
 import datesInfoAtom from "~/atoms/datesInfoAtom";
 import datePickedAtom from "~/atoms/datePickedAtom";
+import { ToastType } from "~/components/ToastNotifs";
+import { toast } from "react-hot-toast";
+import ToastNotifs from "~/components/ToastNotifs";
 
 export default function Home() {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
@@ -18,7 +20,7 @@ export default function Home() {
 
   useEffect(() => {
     initDateInfo();
-  }, [datePicked])
+  }, [datePicked]);
 
   // Finds date inside datesInfo and returns it's corresponding array of information
   const initDateInfo = () => {
@@ -30,23 +32,42 @@ export default function Home() {
       }
     }
     setDateInfo(null);
-  }
+  };
 
   // If given date is equal to 'datePicked'
   const isEqualDate = (d1: Date) => {
-   return d1.getDate() === datePicked.getDate() &&
-          d1.getMonth() === datePicked.getMonth() &&
-          d1.getFullYear() === datePicked.getFullYear();
-  }
+    return (
+      d1.getDate() === datePicked.getDate() &&
+      d1.getMonth() === datePicked.getMonth() &&
+      d1.getFullYear() === datePicked.getFullYear()
+    );
+  };
+
+  const pushToast = (title: string, description: string, type?: ToastType) => {
+    toast.custom((t) => (
+      <ToastNotifs t={t} title={title} description={description} type={type} />
+    ));
+  };
 
   return (
     <div className="flex flex-col ">
-      <div className="py-4 px-6">
-        <Calendar view="week" datePicked={datePicked} setDatePicked={setDatePicked}/>
+      <div className="px-6 py-4">
+        <Calendar
+          view="week"
+          datePicked={datePicked}
+          setDatePicked={setDatePicked}
+        />
       </div>
 
-      {dateInfo ? <LoggedDay datePicked={datePicked} dateInfo={dateInfo}/> : <UnloggedDay datePicked={datePicked}/>}
-  
+      {dateInfo ? (
+        <LoggedDay datePicked={datePicked} dateInfo={dateInfo} />
+      ) : (
+        <UnloggedDay datePicked={datePicked} />
+      )}
+
+      <button onClick={() => pushToast("Gentle reminder to log your day!", "")}>
+        NOTIF
+      </button>
     </div>
   );
 }
