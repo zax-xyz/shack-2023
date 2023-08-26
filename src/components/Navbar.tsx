@@ -62,7 +62,7 @@ const Navbar = () => {
               </Link>
             </div>
             <div className="mb-3" onClick={onClose}>
-              <Link href="/calendar" className="flex items-center gap-2">
+              <Link href="/" className="flex items-center gap-2">
                 <UserIcon className="h-7 w-7" />
                 <div>Logout</div>
               </Link>
