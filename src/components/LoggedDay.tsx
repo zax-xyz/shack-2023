@@ -34,8 +34,8 @@ const LoggedDay: React.FC<LoggedDayProps> = ({ datePicked, dateInfo }) => {
           query: { datePicked: datePicked.toString() },
         }}
       >
-        <button tw="flex items-center justify-center rounded h-12 w-12 mb-7 transition bg-white border border-violet-300 text-gray-900 hover:bg-violet-50 rounded-full">
-          <PencilIcon className="h-6"/>
+        <button tw="flex items-center justify-center p-3 mb-7 transition bg-white border border-violet-300 text-gray-900 shadow hover:bg-violet-50 rounded-full">
+          <PencilIcon className="h-5"/>
         </button>
       </Link>
 
