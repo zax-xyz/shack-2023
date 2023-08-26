@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useAtom } from "jotai";
 import { datesInfoAtom } from ".";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 const moodForm = () => {
   const mockActivities = [
@@ -140,7 +141,10 @@ const moodForm = () => {
           id="affirmation-buttons"
           className="flex justify-center space-x-8 py-8"
         >
-          <button className="rounded-sm p-2 outline">Finish Later</button>
+          <Link href="/home" className="rounded-sm p-2 outline">
+            Finish Later
+          </Link>
+
           <button className="rounded-sm p-2 outline" onClick={handleSubmit}>
             Submit
           </button>

@@ -1,12 +1,12 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import WeekdayPicker from "~/components/WeekdayPicker";
 import { api } from "~/utils/api";
 import { useAtom } from "jotai";
 import { datesInfoAtom } from ".";
 import LoggedDay from "~/components/LoggedDay";
 import UnloggedDay from "~/components/UnloggedDay";
+import Calendar from "~/components/Calendar";
 
 export default function Home() {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
@@ -54,7 +54,7 @@ export default function Home() {
       </div>
 
       <div className="py-4 px-6">
-        <WeekdayPicker datePicked={datePicked} setDatePicked={setDatePicked}/>
+        <Calendar view="week" datePicked={datePicked} setDatePicked={setDatePicked}/>
       </div>
 
       {dateInfo ? <LoggedDay datePicked={datePicked} dateInfo={dateInfo}/> : <UnloggedDay datePicked={datePicked}/>}
