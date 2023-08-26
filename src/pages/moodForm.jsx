@@ -142,7 +142,7 @@ const moodForm = () => {
           className="flex justify-center space-x-8 py-8"
         >
           <Link href="/home" className="rounded-sm p-2 outline">
-            Finish Later
+            Go Back
           </Link>
 
           <button className="rounded-sm p-2 outline" onClick={handleSubmit}>

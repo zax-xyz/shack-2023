@@ -25,6 +25,11 @@ const LoggedDay: React.FC<LoggedDayProps> = ({ datePicked, dateInfo}) => {
           Edit
         </button>
       </Link>
+
+      <div>
+        <h1 className="font-bold text-xl">Tasks</h1>
+        {dateInfo.map((elem: any, i: number) => {return <p>{elem.activity}</p>})}
+      </div>
     </div>
   );
 };
