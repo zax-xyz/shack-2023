@@ -54,7 +54,7 @@ const events: Event[] = [
 ];
 
 const Day = () => {
-  const [date, setDate] = useState<Date | null>(null);
+  const [date, setDate] = useState<Date>(new Date());
   const [selectedEvent, setSelectedEvent] = useState<Event>();
 
   useEffect(() => {
@@ -64,7 +64,7 @@ const Day = () => {
   return (
     <>
       <div className="px-3">
-        <h1 tw="text-3xl mt-5 text-indigo-500">Monthly View</h1>
+        <h1 tw="text-3xl mt-5 text-indigo-500">{dayjs(date).format("MMMM")} View</h1>
         <p>Chosen date: {date ? formatDate(date) : "No date chosen"}</p>
       </div>
 
