@@ -27,22 +27,25 @@ const moodForm = () => {
   //     { activity: "scrolling through tiktok", mood: 2, message: "i am kenough" },
   //     { activity: "seeing friends", mood: 2, message: "i am kenough"},
   //   ];
+  
   useEffect(() => {
+    const { datePicked } = router.query;
+    initDateInfo(new Date(datePicked));
+  }, [])
+  
+  useEffect(() => {
+    console.log('date', dateInfo)
     if (!dateInfo) return;
     setSelectedMood(dateInfo[0].mood);
     setMessage(dateInfo[0].message);
-    setActivityAndMood(dateInfo)
+    setActivityAndMood(dateInfo);
   }, [dateInfo])
 
-  useEffect(() => {
-    initDateInfo();
-  }, [])
-
-
-  const initDateInfo = () => {
+  const initDateInfo = (dateQuery) => {
     for (const dateInfo of datesInfo) {
       const d1 = new Date(Object.keys(dateInfo)[0]);
-      if (isEqualDate(d1)) {
+      if (isEqualDate(d1, dateQuery)) {
+        console.log('hi')
         setDateInfo(Object.values(dateInfo)[0]);
         return;
       }
@@ -51,12 +54,10 @@ const moodForm = () => {
   }
 
   // If given date is equal to 'datePicked'
-  const isEqualDate = (d1) => {
-    const { dateQuery } = router.query;
-    const datePicked = new Date(dateQuery)
-   return d1.getDate() === datePicked.getDate() &&
-          d1.getMonth() === datePicked.getMonth() &&
-          d1.getFullYear() === datePicked.getFullYear();
+  const isEqualDate = (d1, dateQuery) => {
+   return d1.getDate() === dateQuery.getDate() &&
+          d1.getMonth() === dateQuery.getMonth() &&
+          d1.getFullYear() === dateQuery.getFullYear();
   }
 
 
