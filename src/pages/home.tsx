@@ -5,6 +5,8 @@ import WeekdayPicker from "~/components/WeekdayPicker";
 import { api } from "~/utils/api";
 import { useAtom } from "jotai";
 import { datesInfoAtom } from ".";
+import LoggedDay from "~/components/LoggedDay";
+import UnloggedDay from "~/components/UnloggedDay";
 
 export default function Home() {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
@@ -55,22 +57,8 @@ export default function Home() {
         <WeekdayPicker datePicked={datePicked} setDatePicked={setDatePicked}/>
       </div>
 
-      <div className="self-center my-8 font-bold text-3xl text-center">
-        "Words of affirmation"
-      </div>
-      <div className="flex justify-center">
-        <div className="bg-gray-200 p-5 h-32 flex flex-col justify-center items-center rounded-xl">
-          <div>You haven't logged in</div>
-          <div className="text-2xl">4 days</div>
-        </div>
-      </div>
-
-      <Link className="self-center m-4" href="/moodForm">
-        <button className="w-25 bg-transparent py-2 px-4 border rounded">
-          {dateInfo ? <p>Edit</p> : <p>Log Today</p>}
-        </button>
-      </Link>
-
+      {dateInfo ? <LoggedDay /> : <UnloggedDay />}
+  
     </div>
   );
 }
