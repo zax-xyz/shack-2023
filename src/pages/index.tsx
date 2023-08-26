@@ -3,24 +3,23 @@ import Link from "next/link";
 import { api } from "~/utils/api";
 import { atom } from "jotai";
 
-// [{date: [
-//           { task: "scrolling through tiktok", mood: 2 },
-//           { task: "seeing friends", mood: 2 },
+// [{date:  [
+//            { activity: "scrolling through tiktok", mood: 2, message: "i am kenough" },
+//            { activity: "seeing friends", mood: 2, message: "i am kenough"},
 //          ]
-//   },
-// ]
+// }]
 
 export const datesInfoAtom = atom([
   {
     "Tue Aug 22 2023 21:01:00 GMT+1000 (Australian Eastern Standard Time)": [
-      { task: "scrolling through tiktok", mood: 2 },
-      { task: "seeing friends", mood: 2 },
+      { activity: "scrolling through tiktok", mood: -1, message: "i am kenough" },
+      { activity: "seeing friends", mood: 2, message: "i am kenough"},
     ],
   },
   {
     "Wed Aug 23 2023 21:01:00 GMT+1000 (Australian Eastern Standard Time)": [
-      { task: "scrolling through tiktok", mood: 2 },
-      { task: "seeing friends", mood: 2 },
+      { activity: "scrolling through tiktok", mood: -2, message: "i am kenough" },
+      { activity: "seeing friends", mood: -1, message: "i am kenough"},
     ],
   },
 ]);

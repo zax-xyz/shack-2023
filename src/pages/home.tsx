@@ -57,7 +57,7 @@ export default function Home() {
         <Calendar view="week" datePicked={datePicked} setDatePicked={setDatePicked}/>
       </div>
 
-      {dateInfo ? <LoggedDay datePicked={datePicked}/> : <UnloggedDay datePicked={datePicked}/>}
+      {dateInfo ? <LoggedDay datePicked={datePicked} dateInfo={dateInfo}/> : <UnloggedDay datePicked={datePicked}/>}
   
     </div>
   );
