@@ -35,15 +35,14 @@ const moodForm = () => {
   }, [dateInfo])
 
   useEffect(() => {
-    const { datePicked } = router.query;
-    initDateInfo(new Date(datePicked));
+    initDateInfo();
   }, [])
 
 
-  const initDateInfo = (datePicked) => {
+  const initDateInfo = () => {
     for (const dateInfo of datesInfo) {
       const d1 = new Date(Object.keys(dateInfo)[0]);
-      if (isEqualDate(d1, datePicked)) {
+      if (isEqualDate(d1)) {
         setDateInfo(Object.values(dateInfo)[0]);
         return;
       }
@@ -52,7 +51,9 @@ const moodForm = () => {
   }
 
   // If given date is equal to 'datePicked'
-  const isEqualDate = (d1, datePicked) => {
+  const isEqualDate = (d1) => {
+    const { dateQuery } = router.query;
+    const datePicked = new Date(dateQuery)
    return d1.getDate() === datePicked.getDate() &&
           d1.getMonth() === datePicked.getMonth() &&
           d1.getFullYear() === datePicked.getFullYear();
@@ -64,18 +65,16 @@ const moodForm = () => {
   };
 
   const handleSelectedActivity = (e) => {
-    console.log('clciked')
     // Add to array of selected activities if checked
     if (e.target.checked == true) {
-      console.log('clciked 12')
+      const copy = [...activityAndMood]
       const newActivityAndMoodObj = {
         activity: e.target.id,
         mood: selectedMood,
       };
-      activityAndMood.push(newActivityAndMoodObj);
-      setActivityAndMood(activityAndMood);
+      copy.push(newActivityAndMoodObj);
+      setActivityAndMood(copy);
     } else {
-      console.log('ass')
       // Remove from array of selected activities if unchecked
       const newActivityAndMoodObj = activityAndMood.filter((obj) => {
         return obj["activity"] !== e.target.id;
@@ -85,7 +84,7 @@ const moodForm = () => {
   };
 
   useEffect(() => {
-    console.log(activityAndMood)
+    console.log('updated', activityAndMood)
   }, [activityAndMood])
 
   const handleMessage = (e) => {
@@ -102,8 +101,16 @@ const moodForm = () => {
     activityAndMood.forEach((obj) => {
       obj["mood"] = selectedMood;
     });
-    setActivityAndMood(activityAndMood);
+    console.log('SUBMIT:', activityAndMood)
+    // setActivityAndMood(activityAndMood);
+    updateDatesInfo();
   };
+
+  const updateDatesInfo = () => {
+    const { datePicked } = router.query;
+    console.log('date picked', datePicked);
+    console.log('submission', activityAndMood)
+  }
 
   const handleCheckedbox = (act) => {
     return activityAndMood.map(elem => elem.activity).includes(act);
