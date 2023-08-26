@@ -1,38 +1,53 @@
 import Link from "next/link";
 
 interface LoggedDayProps {
-  datePicked: Date,
-  dateInfo: any,
+  datePicked: Date;
+  dateInfo: any;
 }
 
-const LoggedDay: React.FC<LoggedDayProps> = ({ datePicked, dateInfo}) => {
+const LoggedDay: React.FC<LoggedDayProps> = ({ datePicked, dateInfo }) => {
   // const moods = [😭, 🙁, 😐, 🙂, 😁]
 
-  const moods = ['\u{1F62D}', '\u{1F615}', '\u{1F610}', '\u{1F642}', '\u{1F601}']
+  const moods = [
+    "\u{1F62D}",
+    "\u{1F615}",
+    "\u{1F610}",
+    "\u{1F642}",
+    "\u{1F601}",
+  ];
   return (
     <div className="flex flex-col">
-      <div className="self-center my-8 font-bold text-3xl text-center">
+      <div className="my-8 self-center text-center text-3xl font-bold">
         "{dateInfo[0].message}"
       </div>
       <div className="flex justify-center">
-        <div className="bg-gray-200 w-40 p-5 h-32 flex flex-col justify-center items-center rounded-xl">
+        <div className="flex h-32 w-40 flex-col items-center justify-center rounded-xl bg-gray-200 p-5">
           <div>Mood</div>
           <div className="text-2xl">{moods[Number(dateInfo[0].mood) + 2]}</div>
         </div>
       </div>
 
-      <Link className="self-center m-4" href={{
-        pathname: '/moodForm',
-        query: { datePicked: datePicked.toString()}
-      }}>
-        <button className="w-25 bg-transparent py-2 px-4 border rounded">
+      <Link
+        className="m-4 self-center"
+        href={{
+          pathname: "/moodForm",
+          query: { datePicked: datePicked.toString() },
+        }}
+      >
+        <button className="w-25 rounded border bg-transparent px-4 py-2">
           Edit
         </button>
       </Link>
 
       <div>
-        <h1 className="font-bold text-xl">Tasks</h1>
-        {dateInfo.map((elem: any, i: number) => {return <p>{elem.activity}</p>})}
+        <h1 className="px-4 text-xl font-bold">Tasks</h1>
+        {dateInfo.map((elem: any, i: number) => {
+          return (
+            <li key={i} className="px-6">
+              {elem.activity}
+            </li>
+          );
+        })}
       </div>
     </div>
   );
