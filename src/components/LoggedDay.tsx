@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PencilIcon } from "@heroicons/react/24/solid";
 
 interface LoggedDayProps {
   datePicked: Date;
@@ -27,14 +28,14 @@ const LoggedDay: React.FC<LoggedDayProps> = ({ datePicked, dateInfo }) => {
       </div>
 
       <Link
-        className="m-4 self-end"
+        className="mb-4 mx-4 self-end"
         href={{
           pathname: "/moodForm",
           query: { datePicked: datePicked.toString() },
         }}
       >
-        <button tw="rounded px-3 py-1.5 mb-7 transition bg-white border border-violet-300 text-gray-900 hover:bg-violet-50">
-          Edit
+        <button tw="flex items-center justify-center rounded h-12 w-12 mb-7 transition bg-white border border-violet-300 text-gray-900 hover:bg-violet-50 rounded-full">
+          <PencilIcon className="h-6"/>
         </button>
       </Link>
 
