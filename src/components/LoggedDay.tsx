@@ -39,8 +39,8 @@ const LoggedDay: React.FC<LoggedDayProps> = ({ datePicked, dateInfo }) => {
         </button>
       </Link>
 
-      <div className="drop-shadow">
-        <h1 className="px-4 text-xl font-bold bg-gradient-to-r from-purple-200/50 to-violet-200/50 py-2 rounded-t-md">Events that caused this Mood:</h1>
+      <div className="shadow">
+        <h1 className="px-4 text-xl font-bold bg-gradient-to-r from-purple-100 to-violet-100 py-2 rounded-t-md">Events that caused this Mood:</h1>
         {dateInfo.map((elem: any, i: number) => {
           return (
             <p key={i} className="px-6 py-4 bg-white rounded-sm">
