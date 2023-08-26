@@ -64,8 +64,10 @@ const moodForm = () => {
   };
 
   const handleSelectedActivity = (e) => {
+    console.log('clciked')
     // Add to array of selected activities if checked
     if (e.target.checked == true) {
+      console.log('clciked 12')
       const newActivityAndMoodObj = {
         activity: e.target.id,
         mood: selectedMood,
@@ -73,6 +75,7 @@ const moodForm = () => {
       activityAndMood.push(newActivityAndMoodObj);
       setActivityAndMood(activityAndMood);
     } else {
+      console.log('ass')
       // Remove from array of selected activities if unchecked
       const newActivityAndMoodObj = activityAndMood.filter((obj) => {
         return obj["activity"] !== e.target.id;
@@ -80,6 +83,10 @@ const moodForm = () => {
       setActivityAndMood(newActivityAndMoodObj);
     }
   };
+
+  useEffect(() => {
+    console.log(activityAndMood)
+  }, [activityAndMood])
 
   const handleMessage = (e) => {
     setMessage(e.target.value);
@@ -91,6 +98,10 @@ const moodForm = () => {
       obj["message"] = message;
     });
 
+    // Add mood to all activityAndMood objects
+    activityAndMood.forEach((obj) => {
+      obj["mood"] = selectedMood;
+    });
     setActivityAndMood(activityAndMood);
   };
 
