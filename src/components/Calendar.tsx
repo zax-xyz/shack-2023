@@ -14,14 +14,15 @@ type Items = Parameters<
   Exclude<ComponentProps<typeof Datepicker.Items>["children"], ReactNode>
 >[0]["items"];
 
+const headerItems = (items: Items) => items.filter((item) => item.isHeader);
+const bodyItems = (items: Items) => items.filter((item) => !item.isHeader);
+
 const filterItems = (items: Items, view: View, today: Dayjs): Items => {
   switch (view) {
     case "month":
       return items;
     case "week":
-      return items.filter(
-        (item) => item.isHeader || today.isSame(item.value, "week")
-      );
+      return items.filter((item) => today.isSame(item.value, "week"));
   }
 };
 
@@ -73,22 +74,41 @@ const Calendar = ({
     <Datepicker value={datePicked} onChange={setDatePicked} {...props}>
       <Datepicker.Picker>
         <Datepicker.Items>
-          {({ items }) =>
-            filterItems(items, view, today).map((item) => (
-              <Datepicker.Item
-                key={item.key}
-                item={item}
-                isHeader={item.isHeader}
-                disabled={item.disabled}
-                isSelected={item.isSelected}
-                isToday={item.isToday}
-                isColored={levels && item.value.toString() in levels}
-                css={getLevelColor(item.value, levels) ?? undefined}
-              >
-                {item.isHeader ? item.text.substring(0, 2) : item.text}
-              </Datepicker.Item>
-            ))
-          }
+          {({ items }) => (
+            <>
+              <Datepicker.Header>
+                {headerItems(items).map((item) => (
+                  <Datepicker.Item
+                    key={item.key}
+                    item={item}
+                    isHeader={true}
+                    disabled={item.disabled}
+                    isSelected={item.isSelected}
+                    isToday={item.isToday}
+                    isColored={levels && item.value.toString() in levels}
+                    css={getLevelColor(item.value, levels) ?? undefined}
+                  >
+                    {item.text.substring(0, 2)}
+                  </Datepicker.Item>
+                ))}
+              </Datepicker.Header>
+              <Datepicker.Body>
+                {filterItems(bodyItems(items), view, today).map((item) => (
+                  <Datepicker.Item
+                    key={item.key}
+                    item={item}
+                    disabled={item.disabled}
+                    isSelected={item.isSelected}
+                    isToday={item.isToday}
+                    isColored={levels && item.value.toString() in levels}
+                    css={getLevelColor(item.value, levels) ?? undefined}
+                  >
+                    {item.isHeader ? item.text.substring(0, 2) : item.text}
+                  </Datepicker.Item>
+                ))}
+              </Datepicker.Body>
+            </>
+          )}
         </Datepicker.Items>
       </Datepicker.Picker>
     </Datepicker>

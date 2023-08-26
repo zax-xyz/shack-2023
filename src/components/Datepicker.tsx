@@ -5,18 +5,18 @@ import tw, { styled } from "twin.macro";
 const Picker = (props: ComponentProps<typeof Datepicker.Picker>) => (
   <Datepicker.Picker
     defaultType="day"
-    tw="p-4 max-w-xl mx-auto bg-white rounded-md shadow"
+    tw="max-w-xl mx-auto bg-white rounded-md shadow"
     alwaysOpen
     {...props}
   />
 );
 
-const Items = (props: ComponentProps<typeof Datepicker.Items>) => (
-  <Datepicker.Items
-    tw="grid w-full auto-rows-max gap-4 grid-cols-7 justify-items-center"
-    {...props}
-  />
-);
+const Items = Datepicker.Items;
+
+const headerBodyStyles =
+  "grid w-full auto-rows-max gap-4 grid-cols-7 justify-items-center";
+const Header = tw.div`px-4 py-2 bg-gray-100 rounded-t-md ${headerBodyStyles}`;
+const Body = tw.div`p-4 pt-3 ${headerBodyStyles}`;
 
 const Item = styled(Datepicker.Item, {
   ...tw`
@@ -76,5 +76,7 @@ const Item = styled(Datepicker.Item, {
 export default Object.assign(Datepicker, {
   Picker,
   Items,
+  Header,
+  Body,
   Item,
 });
