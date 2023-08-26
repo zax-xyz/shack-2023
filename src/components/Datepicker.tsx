@@ -50,6 +50,7 @@ const Item = styled(Datepicker.Item, {
     {
       isHeader: false,
       disabled: false,
+      isColored: false,
       css: tw`hover:text-white`,
     },
     {

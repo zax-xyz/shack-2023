@@ -24,11 +24,11 @@ export type Level = 1 | 2 | 3 | 4 | 5;
 export type Levels = Record<string, Level>;
 
 const levelColors = [
-  tw`bg-red-400 text-red-950 hover:bg-red-500`,
-  tw`bg-orange-400 text-orange-950 hover:bg-orange-500`,
-  tw`bg-yellow-400 text-yellow-950 hover:bg-yellow-500`,
-  tw`bg-lime-400 text-lime-950 hover:bg-lime-500`,
-  tw`bg-green-400 text-green-950 hover:bg-green-500`,
+  tw`bg-red-200 text-red-950 hover:bg-red-300`,
+  tw`bg-orange-200 text-orange-950 hover:bg-orange-300`,
+  tw`bg-yellow-200 text-yellow-950 hover:bg-yellow-300`,
+  tw`bg-lime-200 text-lime-950 hover:bg-lime-300`,
+  tw`bg-green-200 text-green-950 hover:bg-green-300`,
 ];
 
 const getLevelColor = (
