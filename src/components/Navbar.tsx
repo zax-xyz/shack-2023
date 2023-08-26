@@ -14,7 +14,10 @@ const Navbar = () => {
     <div className="sticky top-0 rounded bg-gradient-to-r from-purple-200/50 to-violet-200/50 px-6 py-2 shadow backdrop-blur">
       <div className="mx-auto flex max-w-5xl justify-between">
         <Link href="/home">
-          <Image className="h-10 w-10" src={logo} alt="Home" />
+          <div className="flex flex-row items-center gap-2">
+            <Image className="h-10 w-10" src={logo} alt="Home" />
+            <p className="text-2xl font-semibold">Thrive</p>
+          </div>
         </Link>
         <div className="flex items-center gap-4">
           <p>{dayjs(datePicked).format("MMMM")}</p>
