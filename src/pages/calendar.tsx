@@ -13,7 +13,7 @@ const Day = () => {
       <h1 tw="text-2xl my-2">Pick a date</h1>
       <p>Chosen date: {value?.toString()}</p>
 
-      <Calendar view="week" tw="my-4" value={value} onChange={setValue} />
+      <Calendar view="month" tw="my-4" value={value} onChange={setValue} />
     </>
   );
 };
