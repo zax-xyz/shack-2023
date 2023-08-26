@@ -15,7 +15,6 @@ const moodForm = () => {
   const [datesInfo, setDatesInfo] = useAtom(datesInfoAtom);
   const searchParams = useSearchParams();
   const date = searchParams.get('datePicked');
-  console.log(date)
 
   const [activityAndMood, setActivityAndMood] = useState([]);
   //   Example of activityAndMood
