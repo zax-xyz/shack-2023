@@ -17,35 +17,34 @@ const LoggedDay: React.FC<LoggedDayProps> = ({ datePicked, dateInfo }) => {
   ];
   return (
     <div className="flex flex-col">
-      <div className="my-8 self-center text-center text-3xl font-bold">
+      <div className="self-center mt-4">Words of Affirmation:</div>
+      <div className="mb-8 self-center text-center text-4xl font-bold text-indigo-500">
         "{dateInfo[0].message}"
       </div>
-      <div className="flex justify-center">
-        <div className="flex h-32 w-40 flex-col items-center justify-center rounded-xl bg-gray-200 p-5">
-          <div>Mood</div>
-          <div className="text-2xl">{moods[Number(dateInfo[0].mood) + 2]}</div>
-        </div>
+      <div className="flex self-center flex-col justify-center items-center w-44 h-44 bg-gradient-to-r from-indigo-400/80 to-purple-400/80 rounded-full">
+        <div className="text-white font-bold mb-3">Today's Mood:</div>
+        <div className="text-6xl">{moods[Number(dateInfo[0].mood) + 2]}</div>
       </div>
 
       <Link
-        className="m-4 self-center"
+        className="m-4 self-end"
         href={{
           pathname: "/moodForm",
           query: { datePicked: datePicked.toString() },
         }}
       >
-        <button className="w-25 rounded border bg-transparent px-4 py-2">
+        <button tw="rounded px-3 py-1.5 mb-7 transition bg-white border border-violet-300 text-gray-900 hover:bg-violet-50">
           Edit
         </button>
       </Link>
 
-      <div>
-        <h1 className="px-4 text-xl font-bold">Tasks</h1>
+      <div className="drop-shadow">
+        <h1 className="px-4 text-xl font-bold bg-gradient-to-r from-purple-200/50 to-violet-200/50 py-2 rounded-sm">Events</h1>
         {dateInfo.map((elem: any, i: number) => {
           return (
-            <li key={i} className="px-6">
+            <p key={i} className="px-6 py-4 bg-white rounded-sm">
               {elem.activity}
-            </li>
+            </p>
           );
         })}
       </div>
