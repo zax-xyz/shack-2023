@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useAtom } from "jotai";
-import datesInfoAtom from '~/atoms/datesInfoAtom'
+import datesInfoAtom from "~/atoms/datesInfoAtom";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -17,7 +17,7 @@ const moodForm = () => {
 
   const [selectedMood, setSelectedMood] = useState(undefined);
   const [message, setMessage] = useState("");
-  
+
   const router = useRouter();
 
   const [activityAndMood, setActivityAndMood] = useState([]);
@@ -28,17 +28,16 @@ const moodForm = () => {
   //     { activity: "seeing friends", mood: 2, message: "i am kenough"},
   //   ];
   useEffect(() => {
+    const { datePicked } = router.query;
+    initDateInfo(new Date(datePicked));
+  }, []);
+  
+  useEffect(() => {
     if (!dateInfo) return;
     setSelectedMood(dateInfo[0].mood);
     setMessage(dateInfo[0].message);
-    setActivityAndMood(dateInfo)
+    setActivityAndMood(dateInfo);
   }, [dateInfo])
-
-  useEffect(() => {
-    const { datePicked } = router.query;
-    initDateInfo(new Date(datePicked));
-  }, [])
-
 
   const initDateInfo = (datePicked) => {
     for (const dateInfo of datesInfo) {
@@ -49,13 +48,14 @@ const moodForm = () => {
       }
     }
     setDateInfo(null);
-  }
+  };
 
   // If given date is equal to 'datePicked'
   const isEqualDate = (d1, datePicked) => {
-   return d1.getDate() === datePicked.getDate() &&
-          d1.getMonth() === datePicked.getMonth() &&
-          d1.getFullYear() === datePicked.getFullYear();
+    const d2 = new Date(datePicked)
+   return d1.getDate() === d2.getDate() &&
+          d1.getMonth() === d2.getMonth() &&
+          d1.getFullYear() === d2.getFullYear();
   }
 
 
@@ -66,12 +66,13 @@ const moodForm = () => {
   const handleSelectedActivity = (e) => {
     // Add to array of selected activities if checked
     if (e.target.checked == true) {
+      const copy = [...activityAndMood]
       const newActivityAndMoodObj = {
         activity: e.target.id,
         mood: selectedMood,
       };
-      activityAndMood.push(newActivityAndMoodObj);
-      setActivityAndMood(activityAndMood);
+      copy.push(newActivityAndMoodObj);
+      setActivityAndMood(copy);
     } else {
       // Remove from array of selected activities if unchecked
       const newActivityAndMoodObj = activityAndMood.filter((obj) => {
@@ -80,6 +81,9 @@ const moodForm = () => {
       setActivityAndMood(newActivityAndMoodObj);
     }
   };
+
+  useEffect(() => {
+  }, [activityAndMood])
 
   const handleMessage = (e) => {
     setMessage(e.target.value);
@@ -91,12 +95,42 @@ const moodForm = () => {
       obj["message"] = message;
     });
 
-    setActivityAndMood(activityAndMood);
+    // Add mood to all activityAndMood objects
+    activityAndMood.forEach((obj) => {
+      obj["mood"] = selectedMood;
+    });
+    // setActivityAndMood(activityAndMood);
+    updateDatesInfo();
   };
 
-  const handleCheckedbox = (act) => {
-    return activityAndMood.map(elem => elem.activity).includes(act);
+  const updateDatesInfo = () => {
+    const { datePicked } = router.query;
+    const i = findIndexDatesInfo(datePicked);
+
+    const copy = [...datesInfo]
+    if (i === -1) {
+      // Add new entry to datesInfo
+      copy.push({ [datePicked]: activityAndMood });
+    } else {
+      copy[i] = { [datePicked]: activityAndMood }; 
+    }
+    setDatesInfo(copy);
   }
+
+  const findIndexDatesInfo = (date) => {
+    for (const i in datesInfo) {
+      const dateInfo = datesInfo[i]
+      const d1 = new Date(Object.keys(dateInfo)[0]);
+      if (isEqualDate(d1, date)) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  const handleCheckedbox = (act) => {
+    return activityAndMood.map((elem) => elem.activity).includes(act);
+  };
 
   return (
     <div className="p-10">
@@ -170,7 +204,12 @@ const moodForm = () => {
         <div className="font-bold">
           What's a message you want to leave for yourself in 24 hours?
         </div>
-        <input value={message} id="affirmation" type="text" onChange={handleMessage}></input>
+        <input
+          value={message}
+          id="affirmation"
+          type="text"
+          onChange={handleMessage}
+        ></input>
         <br></br>
         <div
           id="affirmation-buttons"
@@ -180,9 +219,13 @@ const moodForm = () => {
             Go Back
           </Link>
 
-          <button className="rounded-sm p-2 outline" onClick={handleSubmit}>
+          <Link
+            href="/home"
+            className="rounded-sm p-2 outline"
+            onClick={handleSubmit}
+          >
             Submit
-          </button>
+          </Link>
         </div>
       </div>
     </div>

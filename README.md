@@ -33,7 +33,7 @@ Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/ver
 
 2. Install dependencies with `pnpm i`
 
-3. Copy .env file with `cp env. example env`
+3. Copy .env file with `cp .env.example .env`
 
 4. Setup prisma with `pnpm prisma db push`
 
