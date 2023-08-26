@@ -64,6 +64,13 @@ const Item = styled(Datepicker.Item, {
       css: tw`border-violet-400 text-purple-800!`,
     },
   ],
+
+  defaultVariants: {
+    isHeader: false,
+    disabled: false,
+    isColored: false,
+    isToday: false,
+  },
 });
 
 export default Object.assign(Datepicker, {
