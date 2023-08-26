@@ -33,18 +33,18 @@ const LoggedDay: React.FC<LoggedDayProps> = ({ datePicked, dateInfo }) => {
           query: { datePicked: datePicked.toString() },
         }}
       >
-        <button tw="rounded px-3 py-1.5 transition bg-white border border-violet-300 text-gray-900 hover:bg-violet-50">
+        <button tw="rounded px-3 py-1.5 mb-7 transition bg-white border border-violet-300 text-gray-900 hover:bg-violet-50">
           Edit
         </button>
       </Link>
 
       <div>
-        <h1 className="px-4 text-xl font-bold">Tasks</h1>
+        <h1 className="px-4 text-xl font-bold bg-gradient-to-r from-purple-200/50 to-violet-200/50 py-2 rounded-sm">Events</h1>
         {dateInfo.map((elem: any, i: number) => {
           return (
-            <li key={i} className="px-6">
+            <p key={i} className="px-6 py-4 bg-white rounded-sm">
               {elem.activity}
-            </li>
+            </p>
           );
         })}
       </div>
