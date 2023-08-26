@@ -17,18 +17,33 @@ export default function Home() {
   const [datePicked, setDatePicked] = useAtom(datePickedAtom);
   const [datesInfo, setDatesInfo] = useAtom(datesInfoAtom);
   const [dateInfo, setDateInfo] = useState(null);
+  const [isNotif, setIsNotif] = useState(false);
 
   useEffect(() => {
     initDateInfo();
   }, [datePicked]);
 
+  // Grabs data associated with persisted state of whether notification has appeared already once
+  useEffect(() => {
+    const data = window.localStorage.getItem("notification_state");
+    if (data === "true") {
+      setIsNotif(true);
+    }
+  }, []);
+
+  // For pushing notification only once when user first opens home page
+  // Persist state by storing in localstorage
   useEffect(() => {
     const timer = setTimeout(() => {
-      // This will run after 5 seconds!
-      pushToast("Gentle reminder to log your day!", "");
-    }, 5000);
+      if (isNotif === false) {
+        // This will run after 3 seconds!
+        pushToast("Gentle reminder to log your day!", "");
+        setIsNotif(true);
+        window.localStorage.setItem("notification_state", JSON.stringify(true));
+      }
+    }, 3000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [isNotif]);
 
   // Finds date inside datesInfo and returns it's corresponding array of information
   const initDateInfo = () => {
