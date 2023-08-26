@@ -22,6 +22,14 @@ export default function Home() {
     initDateInfo();
   }, [datePicked]);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      // This will run after 5 seconds!
+      pushToast("Gentle reminder to log your day!", "");
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, []);
+
   // Finds date inside datesInfo and returns it's corresponding array of information
   const initDateInfo = () => {
     for (const dateInfo of datesInfo) {
@@ -64,10 +72,6 @@ export default function Home() {
       ) : (
         <UnloggedDay datePicked={datePicked} />
       )}
-
-      <button onClick={() => pushToast("Gentle reminder to log your day!", "")}>
-        NOTIF
-      </button>
     </div>
   );
 }
