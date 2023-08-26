@@ -32,7 +32,7 @@ export default function Home() {
     <>
       <Head>
         <div className="outline">
-          <Link href="/">Home</Link>
+          <Link href="/home">Home</Link>
         </div>
         <div>
           <Link href="/about">About page</Link>
