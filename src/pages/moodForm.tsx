@@ -142,11 +142,18 @@ const MoodForm = () => {
   };
 
   return (
-    <div tw="flex flex-col items-center">
-      <Card
-        header="How was your day?"
-        bodyProps={{ css: tw`flex flex-col gap-4` }}
-      >
+    <div tw="flex flex-col py-4 px-4">
+      <div className="self-end mb-2">
+        <Link
+            href="/home"
+            tw="rounded-full px-3 py-1.5 transition bg-white border border-violet-300 text-gray-900 hover:bg-violet-50"
+          >
+            X
+          </Link>
+      </div>
+
+      <div className="mb-8">
+        <h1 className="text-indigo-500 text-2xl mb-1">How was your day?</h1>
         <div id="faces" className="flex">
           {moods.map((mood, i) => (
             <MoodButton
@@ -158,56 +165,53 @@ const MoodForm = () => {
             </MoodButton>
           ))}
         </div>
-        <div id="activities">
-          <h2 tw="font-semibold">
-            Which of your tasks made you feel this mood?
-          </h2>
-          {mockActivities.map((activity, index) => (
-            <label key={index} className="flex items-center gap-2 p-1">
-              <Checkbox
-                id={activity}
-                onChange={handleSelectedActivity}
-                checked={handleCheckedbox(activity)}
-              />
-              <span>{activity}</span>
-            </label>
-          ))}
-        </div>
-        <div id="affirmations">
-          <label className="flex flex-col gap-2 font-semibold">
-            What's a message you want to leave for yourself in 24 hours?
-            <Input
-              value={message}
-              tw="w-full"
-              id="affirmation"
-              type="text"
-              onChange={handleMessage}
-            ></Input>
-          </label>
-        </div>
-        <div id="affirmation-buttons" className="flex justify-center gap-2">
-          <Link
-            href="/home"
-            tw="rounded px-3 py-1.5 transition bg-white border border-violet-300 text-gray-900 hover:bg-violet-50"
-          >
-            Go Back
-          </Link>
+      </div>
 
-          <Link
-            href="/home"
-            className="rounded bg-violet-600 px-3 py-1.5 text-white shadow transition hover:bg-violet-700"
-            onClick={handleSubmit}
-          >
-            Submit
-          </Link>
-        </div>
-      </Card>
+      <div id="activities" className="mb-5">
+        <h2 tw="text-lg text-indigo-500">
+          Which of your tasks made you feel this mood?
+        </h2>
+        {mockActivities.map((activity, index) => (
+          <label key={index} className="flex items-center gap-2 p-1 my-3 pl-4">
+            <Checkbox
+              id={activity}
+              onChange={handleSelectedActivity}
+              checked={handleCheckedbox(activity)}
+            />
+            <span>{activity}</span>
+          </label>
+        ))}
+      </div>
+
+      <div id="affirmations" className="mb-10">
+        <label className="flex flex-col gap-2 text-lg text-indigo-500">
+          What message do you want to leave for yourself in 24 hours?
+          <Input
+            value={message}
+            tw="w-full"
+            id="affirmation"
+            type="text"
+            onChange={handleMessage}
+            className="text-black"
+          ></Input>
+        </label>
+      </div>
+
+      <div id="affirmation-buttons" className="flex justify-center gap-5">
+        <Link
+          href="/home"
+          className="rounded bg-gradient-to-r from-indigo-600/70 to-purple-600/70 px-20 py-3 text-white shadow transition hover:bg-violet-700"
+          onClick={handleSubmit}
+        >
+          Submit
+        </Link>
+      </div>
     </div>
   );
 };
 
 const MoodButton = ({ children, selected, ...props }) => (
-  <button className="group flex-1 p-0.5" {...props}>
+  <button className="bg-white rounded-md group flex-1 p-0.5" {...props}>
     <MoodButtonContent selected={selected}>{children}</MoodButtonContent>
   </button>
 );

@@ -15,7 +15,7 @@ const UnloggedDay: React.FC<UnloggedDayProps> = ({ datePicked }) => {
       </div>
 
       <Link className="self-center m-4" href={`/moodForm?datePicked=${datePicked}`}>
-        <button tw="bg-gradient-to-r from-indigo-400/80 to-purple-400/80 rounded-full px-6 py-3 transition bg-white border border-violet-300 text-gray-900 hover:bg-violet-50">
+        <button tw="bg-gradient-to-r from-indigo-600/70 to-purple-600/70 rounded-xl px-6 py-3 transition bg-white border border-violet-300 text-gray-900 hover:bg-violet-50">
           <p className="text-2xl text-white font-semibold">Log Your Mood</p>
         </button>
       </Link>
