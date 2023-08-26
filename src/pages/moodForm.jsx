@@ -159,6 +159,9 @@ const MoodForm = () => {
           ))}
         </div>
         <div id="activities">
+          <h2 tw="font-semibold">
+            Which of your tasks made you feel this mood?
+          </h2>
           {mockActivities.map((activity, index) => (
             <label key={index} className="flex items-center gap-2 p-1">
               <Checkbox
@@ -171,7 +174,7 @@ const MoodForm = () => {
           ))}
         </div>
         <div id="affirmations">
-          <label className="flex flex-col gap-2 font-bold">
+          <label className="flex flex-col gap-2 font-semibold">
             What's a message you want to leave for yourself in 24 hours?
             <Input
               value={message}
