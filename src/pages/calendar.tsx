@@ -63,8 +63,10 @@ const Day = () => {
 
   return (
     <>
-      <h1 tw="text-3xl my-2">Monthly View</h1>
-      <p>Chosen date: {date ? formatDate(date) : "No date chosen"}</p>
+      <div className="px-3">
+        <h1 tw="text-3xl my-2 text-indigo-500">Monthly View</h1>
+        <p>Chosen date: {date ? formatDate(date) : "No date chosen"}</p>
+      </div>
 
       <div tw="max-w-4xl mx-auto my-4 flex flex-col items-center gap-4 md:flex-row">
         <Calendar
@@ -98,7 +100,8 @@ const EventList = ({
   selectedEvent?: Event;
   setSelectedEvent: Dispatch<SetStateAction<Event | undefined>>;
 }) => (
-  <Card header="Events" tw="w-full max-w-xl md:max-w-none">
+  <Card header="Events" tw="mt-8 m-3
+   max-w-xl md:max-w-none">
     <ul tw="flex flex-col gap-1">
       {events.map((event) => (
         <li key={event.id}>
@@ -136,7 +139,7 @@ const EventListButton = styled("button", {
 const EventView = ({ event }: { event: Event }) => (
   <Card
     header="Event"
-    tw="max-w-2xl mx-auto"
+    tw="max-w-2xl mx-3"
     bodyProps={{ css: tw`flex flex-col gap-2` }}
   >
     <h2 tw="text-xl font-medium">{event.name}</h2>
