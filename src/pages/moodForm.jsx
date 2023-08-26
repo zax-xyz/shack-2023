@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useAtom } from "jotai";
 import { datesInfoAtom } from ".";
@@ -14,7 +14,7 @@ const moodForm = () => {
   const [selectedMood, setSelectedMood] = useState(undefined);
   const [datesInfo, setDatesInfo] = useAtom(datesInfoAtom);
   const searchParams = useSearchParams();
-  const date = searchParams.get('datePicked');
+  const date = new Date(searchParams.get('datePicked'));
 
   const [activityAndMood, setActivityAndMood] = useState([]);
   //   Example of activityAndMood
@@ -23,6 +23,29 @@ const moodForm = () => {
   //     { activity: "scrolling through tiktok", mood: 2 },
   //     { activity: "seeing friends", mood: 2 },
   //   ];
+
+  useEffect(() => {
+    console.log('aaa', findDateInfo())
+  }, [])
+
+  // Finds date object in datesInfo that matches with 'date'
+  const findDateInfo = () => {
+    for (const i in datesInfo) {
+      const dateInfo = datesInfo[i];
+      console.log(i, dateInfo)
+      const d1 = new Date(Object.keys(dateInfo)[0]);
+      if (isEqualDate(d1)) {
+        return i; // TODO: can change this to return whatever u need, currently returns the index of datesInfo with corresponding dateInfo Object
+      }
+    }
+  }
+
+  // If given date is equal to 'datePicked'
+  const isEqualDate = (d1) => {
+   return d1.getDate() === date.getDate() &&
+          d1.getMonth() === date.getMonth() &&
+          d1.getFullYear() === date.getFullYear();
+  }
 
   const onMoodFaceClick = (mood) => {
     setSelectedMood(mood.target.id);
