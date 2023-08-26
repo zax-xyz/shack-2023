@@ -27,17 +27,18 @@ const moodForm = () => {
   //     { activity: "scrolling through tiktok", mood: 2, message: "i am kenough" },
   //     { activity: "seeing friends", mood: 2, message: "i am kenough"},
   //   ];
+  useEffect(() => {
+    if (!dateInfo) return;
+    setSelectedMood(dateInfo[0].mood);
+    setMessage(dateInfo[0].message);
+    setActivityAndMood(dateInfo)
+  }, [dateInfo])
 
   useEffect(() => {
     const { datePicked } = router.query;
     initDateInfo(new Date(datePicked));
   }, [])
 
-  useEffect(() => {
-    if (!dateInfo) return;
-    setSelectedMood(dateInfo[0].mood);
-    setMessage(dateInfo[0].message)
-  }, [dateInfo])
 
   const initDateInfo = (datePicked) => {
     for (const dateInfo of datesInfo) {
@@ -91,9 +92,11 @@ const moodForm = () => {
     });
 
     setActivityAndMood(activityAndMood);
-
-    console.log(activityAndMood);
   };
+
+  const handleCheckedbox = (act) => {
+    return activityAndMood.map(elem => elem.activity).includes(act);
+  }
 
   return (
     <div className="p-10">
@@ -156,6 +159,7 @@ const moodForm = () => {
               type="checkbox"
               id={activity}
               onChange={handleSelectedActivity}
+              checked={handleCheckedbox(activity)}
             />
             <div key={index}>{activity}</div>
           </div>
