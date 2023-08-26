@@ -17,8 +17,8 @@ export default function Home() {
   ];
 
   useEffect(() => {
-    console.log(datePicked?.toString())
-  }, [datePicked])
+    datesInfo
+  }, [])
 
   return (
     <div className="flex flex-col ">
