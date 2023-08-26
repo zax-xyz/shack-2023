@@ -5,18 +5,18 @@ import tw, { styled } from "twin.macro";
 const Picker = (props: ComponentProps<typeof Datepicker.Picker>) => (
   <Datepicker.Picker
     defaultType="day"
-    tw="p-4 max-w-xl mx-auto bg-white rounded-md shadow"
+    tw="max-w-xl mx-auto bg-white rounded-md shadow"
     alwaysOpen
     {...props}
   />
 );
 
-const Items = (props: ComponentProps<typeof Datepicker.Items>) => (
-  <Datepicker.Items
-    tw="grid w-full auto-rows-max gap-4 grid-cols-7 justify-items-center"
-    {...props}
-  />
-);
+const Items = Datepicker.Items;
+
+const headerBodyStyles =
+  "grid w-full auto-rows-max gap-4 grid-cols-7 justify-items-center";
+const Header = tw.div`px-4 py-2 bg-gray-100 rounded-t-md ${headerBodyStyles}`;
+const Body = tw.div`p-4 pt-3 ${headerBodyStyles}`;
 
 const Item = styled(Datepicker.Item, {
   ...tw`
@@ -30,7 +30,7 @@ const Item = styled(Datepicker.Item, {
   variants: {
     isHeader: {
       true: tw`cursor-default font-semibold`,
-      false: tw`hover:bg-gray-700`,
+      false: tw`hover:bg-violet-200`,
     },
     disabled: {
       true: tw`text-gray-500`,
@@ -48,12 +48,6 @@ const Item = styled(Datepicker.Item, {
 
   compoundVariants: [
     {
-      isHeader: false,
-      disabled: false,
-      isColored: false,
-      css: tw`hover:text-white`,
-    },
-    {
       isColored: false,
       isSelected: true,
       css: tw`bg-violet-600 text-white hocus:bg-violet-800`,
@@ -64,10 +58,19 @@ const Item = styled(Datepicker.Item, {
       css: tw`border-violet-400 text-purple-800!`,
     },
   ],
+
+  defaultVariants: {
+    isHeader: false,
+    disabled: false,
+    isColored: false,
+    isToday: false,
+  },
 });
 
 export default Object.assign(Datepicker, {
   Picker,
   Items,
+  Header,
+  Body,
   Item,
 });

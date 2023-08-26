@@ -71,8 +71,8 @@ const Day = () => {
           view="month"
           levels={levels}
           tw="w-auto shrink-0"
-          value={date}
-          onChange={setDate}
+          datePicked={date}
+          setDatePicked={setDate}
         />
 
         <EventList
