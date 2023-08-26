@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useAtom } from "jotai";
 import { datesInfoAtom } from ".";
-import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const moodForm = () => {
   const mockActivities = [
@@ -12,12 +12,13 @@ const moodForm = () => {
     "seeing friends",
   ];
 
-  const searchParams = useSearchParams();
   const [datesInfo, setDatesInfo] = useAtom(datesInfoAtom);
+  const [dateInfo, setDateInfo] = useState();
 
   const [selectedMood, setSelectedMood] = useState(undefined);
   const [message, setMessage] = useState("");
-  const dateQuery = searchParams.get('datePicked');
+  
+  const router = useRouter();
 
   const [activityAndMood, setActivityAndMood] = useState([]);
   //   Example of activityAndMood
@@ -26,6 +27,36 @@ const moodForm = () => {
   //     { activity: "scrolling through tiktok", mood: 2, message: "i am kenough" },
   //     { activity: "seeing friends", mood: 2, message: "i am kenough"},
   //   ];
+
+  useEffect(() => {
+    const { datePicked } = router.query;
+    initDateInfo(new Date(datePicked));
+  }, [])
+
+  useEffect(() => {
+    if (!dateInfo) return;
+    setSelectedMood(dateInfo[0].mood);
+    setMessage(dateInfo[0].message)
+  }, [dateInfo])
+
+  const initDateInfo = (datePicked) => {
+    for (const dateInfo of datesInfo) {
+      const d1 = new Date(Object.keys(dateInfo)[0]);
+      if (isEqualDate(d1, datePicked)) {
+        setDateInfo(Object.values(dateInfo)[0]);
+        return;
+      }
+    }
+    setDateInfo(null);
+  }
+
+  // If given date is equal to 'datePicked'
+  const isEqualDate = (d1, datePicked) => {
+   return d1.getDate() === datePicked.getDate() &&
+          d1.getMonth() === datePicked.getMonth() &&
+          d1.getFullYear() === datePicked.getFullYear();
+  }
+
 
   const onMoodFaceClick = (mood) => {
     setSelectedMood(mood.target.id);
@@ -135,14 +166,14 @@ const moodForm = () => {
         <div className="font-bold">
           What's a message you want to leave for yourself in 24 hours?
         </div>
-        <input id="affirmation" type="text" onChange={handleMessage}></input>
+        <input value={message} id="affirmation" type="text" onChange={handleMessage}></input>
         <br></br>
         <div
           id="affirmation-buttons"
           className="flex justify-center space-x-8 py-8"
         >
           <Link href="/home" className="rounded-sm p-2 outline">
-            Finish Later
+            Go Back
           </Link>
 
           <button className="rounded-sm p-2 outline" onClick={handleSubmit}>
