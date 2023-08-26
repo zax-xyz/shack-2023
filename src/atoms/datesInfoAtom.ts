@@ -2,7 +2,7 @@ import { atom } from "jotai";
 
 export default atom([
   {
-    "Tue Aug 22 2023 21:01:00 GMT+1000 (Australian Eastern Standard Time)": [
+    "Sun Aug 27 2023 21:01:00 GMT+1000 (Australian Eastern Standard Time)": [
       {
         activity: "scrolling through tiktok",
         mood: -1,
@@ -12,7 +12,7 @@ export default atom([
     ],
   },
   {
-    "Wed Aug 23 2023 21:01:00 GMT+1000 (Australian Eastern Standard Time)": [
+    "Mon Aug 28 2023 21:01:00 GMT+1000 (Australian Eastern Standard Time)": [
       {
         activity: "scrolling through tiktok",
         mood: -2,
