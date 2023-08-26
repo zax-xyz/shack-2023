@@ -26,3 +26,15 @@ You can check out the [create-t3-app GitHub repository](https://github.com/t3-os
 ## How do I deploy this?
 
 Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+
+## How do I run this?
+
+1. This project uses `pnpm`, so make sure to have installed `pnpm` with `npm i -g ppm` OR using standalone script or homebrew etc [here](https://pnpm.io/installation)
+
+2. Install dependencies with `pnpm i`
+
+3. Copy .env file with `cp env. example env`
+
+4. Setup prisma with `pnpm prisma db push`
+
+5. Run app with `pnpm dev` and you're all done! Enjoy our app!!
