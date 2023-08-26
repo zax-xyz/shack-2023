@@ -9,35 +9,38 @@ const moodForm = () => {
   ];
 
   const [selectedMood, setSelectedMood] = useState(undefined);
-  const [selectedActivities, setSelectedActivities] = useState([]);
 
   const [activityAndMood, setActivityAndMood] = useState([]);
   //   Example of activityAndMood
   //   User selects "very happy" as mood and then ticks the following 2 tasks:
   //   [
-  //     { task: "scrolling through tiktok", mood: 2 },
-  //     { task: "seeing friends", mood: 2 },
+  //     { activity: "scrolling through tiktok", mood: 2 },
+  //     { activity: "seeing friends", mood: 2 },
   //   ];
 
   const onMoodFaceClick = (mood) => {
     setSelectedMood(mood.target.id);
-    mood.target.style.color = "black";
+
     console.log(selectedMood);
   };
 
   const handleSelectedActivity = (e) => {
     // Add to array of selected activities if checked
     if (e.target.checked == true) {
-      selectedActivities.push(e.target.id);
-      setSelectedActivities(selectedActivities);
+      const newActivityAndMoodObj = {
+        activity: e.target.id,
+        mood: selectedMood,
+      };
+      activityAndMood.push(newActivityAndMoodObj);
+      setActivityAndMood(activityAndMood);
     } else {
       // Remove from array of selected activities if unchecked
-      const newSelectedActivities = selectedActivities.filter((activity) => {
-        return activity !== e.target.id;
+      const newActivityAndMoodObj = activityAndMood.filter((obj) => {
+        return obj["activity"] !== e.target.id;
       });
-      setSelectedActivities(newSelectedActivities);
+      setActivityAndMood(newActivityAndMoodObj);
     }
-    console.log(selectedActivities);
+    console.log(activityAndMood);
   };
 
   return (
@@ -48,28 +51,36 @@ const moodForm = () => {
           <button
             id="-2"
             onClick={onMoodFaceClick}
-            className={"rounded-sm bg-white p-1 outline"}
+            className={`rounded-sm bg-white p-1 outline ${
+              selectedMood == -2 ? "bg-purple-300" : ""
+            }`}
           >
             😭
           </button>
           <button
             id="-1"
             onClick={onMoodFaceClick}
-            className="rounded-sm p-1 outline"
+            className={`rounded-sm bg-white p-1 outline ${
+              selectedMood == -1 ? "bg-purple-300" : ""
+            }`}
           >
             🙁
           </button>
           <button
             id="0"
             onClick={onMoodFaceClick}
-            className="rounded-sm p-1 outline"
+            className={`rounded-sm bg-white p-1 outline ${
+              selectedMood == 0 ? "bg-purple-300" : ""
+            }`}
           >
             😐
           </button>
           <button
             id="1"
             onClick={onMoodFaceClick}
-            className="rounded-sm p-1 outline"
+            className={`rounded-sm bg-white p-1 outline ${
+              selectedMood == 1 ? "bg-purple-300" : ""
+            }`}
           >
             🙂
           </button>
@@ -77,7 +88,9 @@ const moodForm = () => {
           <button
             id="2"
             onClick={onMoodFaceClick}
-            className="rounded-sm p-1 outline"
+            className={`rounded-sm bg-white p-1 outline ${
+              selectedMood == 2 ? "bg-purple-300" : ""
+            }`}
           >
             😁
           </button>
