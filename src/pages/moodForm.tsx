@@ -10,6 +10,7 @@ import Card from "~/components/Card";
 import tw, { styled } from "twin.macro";
 import Checkbox from "~/components/Checkbox";
 import Input from "~/components/Input";
+import { XMarkIcon } from "@heroicons/react/24/solid";
 
 const moods = ["😭", "🙁", "😐", "🙂", "😁"];
 
@@ -146,9 +147,9 @@ const MoodForm = () => {
       <div className="self-end mb-2">
         <Link
             href="/home"
-            tw="rounded-full px-3 py-1.5 transition bg-white border border-violet-300 text-gray-900 hover:bg-violet-50"
+            tw="flex items-center justify-center rounded-full w-8 h-8 transition bg-white border border-violet-300 text-gray-900 shadow hover:bg-violet-50"
           >
-            X
+            <XMarkIcon tw="h-4" />
           </Link>
       </div>
 
