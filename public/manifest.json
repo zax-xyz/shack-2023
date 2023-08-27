@@ -1,0 +1,19 @@
+{
+    "short_name": "Thrive",
+    "name": "Thrive",
+    "icons": [
+        {
+            "src": "/logo.png",
+            "type": "image/png",
+            "sizes": "200x200"
+        }
+    ],
+    "id": "/?source=pwa",
+    "start_url": "/?source=pwa",
+    "background_color": "##8b5cf6",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "##8b5cf6",
+    "description": "The app that makes room for your drive",
+    "screenshots": []
+}

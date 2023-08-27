@@ -15,7 +15,6 @@ export default function Home() {
           name="description"
           content="The app that makes room for your drive"
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <main tw="h-full flex flex-col items-center justify-center gap-4">
         <Image className="h-36 w-36" src={logo} alt="Thrive" />
