@@ -27,19 +27,21 @@ const LoggedDay: React.FC<LoggedDayProps> = ({ datePicked, dateInfo }) => {
         <div className="text-6xl">{moods[Number(dateInfo[0].mood) + 2]}</div>
       </div>
 
-      <Link
-        className="mb-4 mx-4 self-end"
-        href={{
-          pathname: "/moodForm",
-          query: { datePicked: datePicked.toString() },
-        }}
-      >
-        <button tw="flex items-center justify-center p-3 mb-7 transition bg-white border border-violet-300 text-gray-900 shadow hover:bg-violet-50 rounded-full">
-          <PencilIcon className="h-5"/>
-        </button>
-      </Link>
+      <div className="max-w-3xl w-full mx-auto flex flex-col">
+        <Link
+          className="mb-4 mx-4 self-end"
+          href={{
+            pathname: "/moodForm",
+            query: { datePicked: datePicked.toString() },
+          }}
+        >
+          <button tw="flex items-center justify-center p-3 mb-7 transition bg-white border border-violet-300 text-gray-900 shadow hover:bg-violet-50 rounded-full">
+            <PencilIcon className="h-5"/>
+          </button>
+        </Link>
+      </div>
 
-      <div className="shadow">
+      <div className="shadow w-full max-w-2xl mx-auto">
         <h1 className="px-4 text-xl font-bold bg-gradient-to-r from-purple-100 to-violet-100 py-2 rounded-t-md">Events that caused this Mood:</h1>
         {dateInfo.map((elem: any, i: number) => {
           return (
