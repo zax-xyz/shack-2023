@@ -50,20 +50,20 @@ const Navbar = () => {
           <PopoverArrow />
           <PopoverBody className="pt-4 px-3">
             <div className="mb-3" onClick={onClose} >
-              <Link href="/home" className="flex items-center gap-2">
-                <HomeIcon className="h-7 w-7" />
+              <Link href="/home" className="flex items-center gap-2 transition hover:text-indigo-600">
+                <HomeIcon className="h-6 w-6" />
                 <div>Home</div>
               </Link>
             </div>
             <div className="mb-3" onClick={onClose}>
-              <Link href="/calendar" className="flex items-center gap-2">
-                <CalendarDaysIcon className="h-7 w-7" />
+              <Link href="/calendar" className="flex items-center gap-2 transition hover:text-indigo-600">
+                <CalendarDaysIcon className="h-6 w-6" />
                 <div>Calendar</div>
               </Link>
             </div>
             <div className="mb-3" onClick={onClose}>
-              <Link href="/" className="flex items-center gap-2">
-                <UserIcon className="h-7 w-7" />
+              <Link href="/" className="flex items-center gap-2 transition hover:text-indigo-600">
+                <UserIcon className="h-6 w-6" />
                 <div>Logout</div>
               </Link>
             </div>
